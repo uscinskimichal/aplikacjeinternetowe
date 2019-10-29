@@ -20,7 +20,7 @@ public class Patient {
     private String login;
     private String phoneNumber;
     private Character sex;
-    private String PESEL;
+    private String pesel;
 
     @OneToMany(mappedBy = "patient")
     private Set<Form> forms;
