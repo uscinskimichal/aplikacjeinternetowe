@@ -46,7 +46,6 @@ public class PatientServiceImpl implements PatientService {
     public boolean editPatient(PatientDTO patientDTO, Integer id) {
         if (patientRepository.existsById(id)) {
             Patient patient = patientMapper.convert(patientDTO);
-
             patient.setID_Patient(id);
             patientRepository.save(patient);
             return true;

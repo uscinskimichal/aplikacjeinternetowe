@@ -23,9 +23,9 @@ public class PatientController {
 
     @GetMapping("/patients/{id}")
     public ResponseEntity<PatientDTO> getPatient(@PathVariable("id") Integer idPatient) {
-        PatientDTO patient = patientService.getPatient(idPatient);
-        if (patient != null)
-            return new ResponseEntity<>(patient, HttpStatus.OK);
+        PatientDTO patientDTO = patientService.getPatient(idPatient);
+        if (patientDTO != null)
+            return new ResponseEntity<>(patientDTO, HttpStatus.OK);
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 

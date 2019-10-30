@@ -1,11 +1,13 @@
 package aplikacjeinternetowe.ai.entities;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class Doctor {
 
@@ -30,8 +32,8 @@ public class Doctor {
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(
             name = "doctor_specialization",
-            joinColumns = {@JoinColumn(name = "id_specialization")},
-            inverseJoinColumns = {@JoinColumn(name = "id_doctor")}
+            inverseJoinColumns  = {@JoinColumn(name = "id_specialization")},
+            joinColumns = {@JoinColumn(name = "id_doctor")}
     )
     Set<Specialization> specializations;
 }
