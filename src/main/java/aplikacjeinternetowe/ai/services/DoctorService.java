@@ -16,4 +16,6 @@ public interface DoctorService {
     boolean editDoctor(DoctorDTO doctorDTO, Integer id);
 
     boolean deleteDoctor(Integer id);
+
+    String login(String login, String password);
 }

@@ -16,4 +16,7 @@ public interface PatientService {
     boolean editPatient(PatientDTO patientDTO, Integer id);
 
     boolean deletePatient(Integer id);
+
+    String login(String login, String password);
+
 }

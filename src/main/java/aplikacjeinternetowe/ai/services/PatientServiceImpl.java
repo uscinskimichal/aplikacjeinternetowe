@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 public class PatientServiceImpl implements PatientService {
 
-    private final PatientRepository patientRepository;
+    public final PatientRepository patientRepository;
     private final PatientMapper patientMapper;
 
     public PatientServiceImpl(PatientRepository patientRepository, PatientMapper patientMapper) {
@@ -61,5 +61,10 @@ public class PatientServiceImpl implements PatientService {
             return true;
         } else
             return false;
+    }
+
+    @Override
+    public String login(String login, String password) {
+        return "PATIENT";
     }
 }

@@ -14,10 +14,10 @@ import java.util.List;
 public class DoctorServiceImpl implements DoctorService {
 
     @Autowired
-    DoctorMapper doctorMapper;
+    public DoctorMapper doctorMapper;
 
     @Autowired
-    DoctorRepository doctorRepository;
+    public DoctorRepository doctorRepository;
 
 
     @Override
@@ -59,5 +59,10 @@ public class DoctorServiceImpl implements DoctorService {
                 return true;
             } else
                 return false;
+    }
+
+    @Override
+    public String login(String login, String password) {
+        return "DOCTOR";
     }
 }
