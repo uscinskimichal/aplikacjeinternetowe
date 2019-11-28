@@ -1,8 +1,15 @@
 package aplikacjeinternetowe.ai.services;
 
+import aplikacjeinternetowe.ai.loginForms.LoginForm;
+import aplikacjeinternetowe.ai.loginForms.LoginFormResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -23,16 +30,21 @@ public class LoginServiceImpl implements LoginService {
     @Autowired
     PatientServiceImpl patientService;
 
-    public String login(String login, String password) {
-        if (doctorService.doctorRepository.existsByLoginAndPassword(login, password)) {
+
+    public LoginFormResponse login(LoginForm loginForm) {
+        if (doctorService.doctorRepository.existsByLoginAndPassword(loginForm.getLogin(), loginForm.getPassword())) {
             setHttpStatus(HttpStatus.OK);
-            return doctorService.login(login, password);
-        } else if (patientService.patientRepository.existsByLoginAndPassword(login, password)) {
+            return doctorService.login(loginForm);
+        } else if (patientService.patientRepository.existsByLoginAndPassword(loginForm.getLogin(), loginForm.getPassword())) {
             setHttpStatus(HttpStatus.OK);
-            return patientService.login(login, password);
+            return patientService.login(loginForm);
         } else {
             setHttpStatus(HttpStatus.NOT_FOUND);
-            return "Błedne dane logowania";
+            LoginFormResponse loginFormResponse = new LoginFormResponse();
+            loginFormResponse.setLogin(loginForm.getLogin());
+            loginFormResponse.setPassword(loginForm.getPassword());
+            loginFormResponse.setRole("Błedne dane logowania");
+            return loginFormResponse;
         }
 
     }

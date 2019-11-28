@@ -1,7 +1,10 @@
 package aplikacjeinternetowe.ai.services;
 
+import aplikacjeinternetowe.ai.loginForms.LoginForm;
+import aplikacjeinternetowe.ai.loginForms.LoginFormResponse;
+
 public interface LoginService {
 
-    String login(String login, String password);
+    LoginFormResponse login(LoginForm loginForm);
 
 }

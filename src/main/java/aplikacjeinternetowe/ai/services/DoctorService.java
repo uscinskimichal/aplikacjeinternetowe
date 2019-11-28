@@ -1,6 +1,8 @@
 package aplikacjeinternetowe.ai.services;
 
 import aplikacjeinternetowe.ai.dtos.DoctorDTO;
+import aplikacjeinternetowe.ai.loginForms.LoginForm;
+import aplikacjeinternetowe.ai.loginForms.LoginFormResponse;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,5 +19,5 @@ public interface DoctorService {
 
     boolean deleteDoctor(Integer id);
 
-    String login(String login, String password);
+    LoginFormResponse login(LoginForm loginForm);
 }

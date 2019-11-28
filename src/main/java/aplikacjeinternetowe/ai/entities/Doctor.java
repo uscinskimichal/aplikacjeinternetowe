@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -29,7 +30,7 @@ public class Doctor {
     @JoinColumn(name = "id_institution")
     private Institution institution;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name = "doctor_specialization",
             inverseJoinColumns  = {@JoinColumn(name = "id_specialization")},

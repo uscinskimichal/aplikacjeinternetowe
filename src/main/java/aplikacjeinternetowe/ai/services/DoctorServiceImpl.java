@@ -1,8 +1,9 @@
 package aplikacjeinternetowe.ai.services;
 
 import aplikacjeinternetowe.ai.dtos.DoctorDTO;
+import aplikacjeinternetowe.ai.loginForms.LoginForm;
+import aplikacjeinternetowe.ai.loginForms.LoginFormResponse;
 import aplikacjeinternetowe.ai.entities.Doctor;
-import aplikacjeinternetowe.ai.entities.Patient;
 import aplikacjeinternetowe.ai.mappers.DoctorMapper;
 import aplikacjeinternetowe.ai.repositories.DoctorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,7 +63,12 @@ public class DoctorServiceImpl implements DoctorService {
     }
 
     @Override
-    public String login(String login, String password) {
-        return "DOCTOR";
+    public LoginFormResponse login(LoginForm loginForm) {
+        LoginFormResponse loginFormResponse = new LoginFormResponse();
+        loginFormResponse.setLogin(loginForm.getLogin());
+        loginFormResponse.setPassword(loginForm.getPassword());
+        loginFormResponse.setRole("doctor");
+        return loginFormResponse;
     }
+
 }
