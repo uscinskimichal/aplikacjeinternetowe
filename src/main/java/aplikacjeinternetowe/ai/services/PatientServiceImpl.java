@@ -1,5 +1,7 @@
 package aplikacjeinternetowe.ai.services;
 
+import aplikacjeinternetowe.ai.loginForms.LoginForm;
+import aplikacjeinternetowe.ai.loginForms.LoginFormResponse;
 import aplikacjeinternetowe.ai.dtos.PatientDTO;
 import aplikacjeinternetowe.ai.entities.Patient;
 import aplikacjeinternetowe.ai.mappers.PatientMapper;
@@ -11,7 +13,7 @@ import java.util.List;
 @Service
 public class PatientServiceImpl implements PatientService {
 
-    private final PatientRepository patientRepository;
+    public final PatientRepository patientRepository;
     private final PatientMapper patientMapper;
 
     public PatientServiceImpl(PatientRepository patientRepository, PatientMapper patientMapper) {
@@ -61,5 +63,14 @@ public class PatientServiceImpl implements PatientService {
             return true;
         } else
             return false;
+    }
+
+    @Override
+    public LoginFormResponse login(LoginForm loginForm) {
+        LoginFormResponse loginFormResponse = new LoginFormResponse();
+        loginFormResponse.setLogin(loginForm.getLogin());
+        loginFormResponse.setPassword(loginForm.getPassword());
+        loginFormResponse.setRole("patient");
+        return loginFormResponse;
     }
 }

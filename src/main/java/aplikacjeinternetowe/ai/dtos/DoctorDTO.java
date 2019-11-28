@@ -3,6 +3,8 @@ package aplikacjeinternetowe.ai.dtos;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Getter
 @Setter
 public class DoctorDTO {
@@ -14,4 +16,5 @@ public class DoctorDTO {
     private String login;
     private String phoneNumber;
     private InstitutionDTO institution;
+    private List<SpecializationDTO> specializations;
 }
