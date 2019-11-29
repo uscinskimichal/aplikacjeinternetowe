@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 
 public class LoginFormResponse {
-    private String login;
+    private String email;
     private String password;
     private String role;
 }

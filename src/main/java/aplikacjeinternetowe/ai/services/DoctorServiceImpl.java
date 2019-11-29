@@ -65,7 +65,7 @@ public class DoctorServiceImpl implements DoctorService {
     @Override
     public LoginFormResponse login(LoginForm loginForm) {
         LoginFormResponse loginFormResponse = new LoginFormResponse();
-        loginFormResponse.setLogin(loginForm.getLogin());
+        loginFormResponse.setEmail(loginForm.getEmail());
         loginFormResponse.setPassword(loginForm.getPassword());
         loginFormResponse.setRole("doctor");
         return loginFormResponse;

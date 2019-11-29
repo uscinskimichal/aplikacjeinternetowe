@@ -9,5 +9,5 @@ public interface PatientRepository extends JpaRepository< Patient , Integer> {
     boolean existsByPesel(String pesel);
     boolean existsById(Integer id);
 
-    boolean existsByLoginAndPassword(String login, String password);
+    boolean existsByEmailAndPassword(String email, String password);
 }

@@ -1,9 +1,9 @@
-insert into patient(id_patient, email, login, name, password, pesel, phone_number, sex, surname) values
-(1, 'jankowalski@wp.pl', 'jankow22' , 'Jan' , 'janek1977' , '1' , '598231009' , 'M' , 'Kowalski'),
-(2, 'karolszpital@gmail.com', 'karolekmdk' , 'Karol' , 'qwertyqaz' , '88121256284' , '500200120' , 'M' , 'Owca'),
-(3, 'kasiahh@onet.pl', 'kahon' , 'Katarzyna' , 'nohak' , '98101690992' , '789340728' , 'F' , 'Honek'),
-(4, 'adammichniewicz@o2.pl', 'adasmicek' , 'Adam' , '123dom123' , '99121284002' , '698500299' , 'M' , 'Michniewicz'),
-(5, 'ania.rychlik89@wp.pl', 'aniarychlik' , 'Anna' , 'rychlik19890514' , '89051428231' , '606342111' , 'F' , 'Rychlik');
+insert into patient(id_patient, email, name, password, pesel, phone_number, sex, surname) values
+(1, 'jankowalski@wp.pl' , 'Jan' , 'janek1977' , '1' , '598231009' , 'M' , 'Kowalski'),
+(2, 'karolszpital@gmail.com' , 'Karol' , 'qwertyqaz' , '88121256284' , '500200120' , 'M' , 'Owca'),
+(3, 'kasiahh@onet.pl' , 'Katarzyna' , 'nohak' , '98101690992' , '789340728' , 'F' , 'Honek'),
+(4, 'adammichniewicz@o2.pl' , 'Adam' , '123dom123' , '99121284002' , '698500299' , 'M' , 'Michniewicz'),
+(5, 'ania.rychlik89@wp.pl' , 'Anna' , 'rychlik19890514' , '89051428231' , '606342111' , 'F' , 'Rychlik');
 
 insert into specialization (id_specialization, name) values
     (1, 'Stomatolog'),
@@ -22,25 +22,25 @@ insert into institution (id_institution, name, phone_number, x_coordinates, y_co
     (2, 'Szpital Wojewódzki' , '600600600' , 55.764 , 51.733),
     (3, 'Prywatna Klinika' , '478900790' , 49.142 , 52.809);
 
-insert into administrator (id_administrator, email, login, name, password, surname) values
-    (1, 'admin1@twojlekarz.pl' , 'admin1' , 'Adam' , 'admin1' , 'Gałązka'),
-    (2, 'admin2@twojlekarz.pl' , 'admin2' , 'Paweł' , 'admin2' , 'Grusza');
+insert into administrator (id_administrator, email, name, password, surname) values
+    (1, 'admin1@twojlekarz.pl' , 'Adam' , 'admin1' , 'Gałązka'),
+    (2, 'admin2@twojlekarz.pl' , 'Paweł' , 'admin2' , 'Grusza');
 
-insert into doctor(id_doctor, email, login, name, password, phone_number, surname , id_institution) values
-(1, 'szymonszybki@twojlekarz.pl', 'szymonszybki' , 'Szymon' , 'qweewq213' , '700898201' , 'Szybki' ,  1 ),
-(2, 'kacperkrzew@twojlekarz.pl', 'kacperkrzew' , 'Kacper' , 'kac89per12' , '567200421' , 'Krzew' ,  3),
-(3, 'bartlomiejbaron@twojlekarz.pl', 'bartlomiejbaron' , 'Bartłomiej' , 'H@M@K' , '777507231' , 'Baron' , 2),
-(4, 'ewelinakopytko@twojlekarz.pl', 'ewelinakopytko' , 'Ewelina' , 'QwErTy!2#' , '678650560' , 'Kopytko' , 1 ),
-(5, 'jadwigasledz@twojlekarz.pl', 'jadwigasledz' , 'Jadwiga' , 'qpwoeiruty' , '534753902' , 'Śledź' ,  null);
+insert into doctor(id_doctor, email, name, password, phone_number, surname , id_institution) values
+(1, 'szymonszybki@twojlekarz.pl' , 'Szymon' , 'qweewq213' , '700898201' , 'Szybki' ,  1 ),
+(2, 'kacperkrzew@twojlekarz.pl' , 'Kacper' , 'kac89per12' , '567200421' , 'Krzew' ,  3),
+(3, 'bartlomiejbaron@twojlekarz.pl' , 'Bartłomiej' , 'H@M@K' , '777507231' , 'Baron' , 2),
+(4, 'ewelinakopytko@twojlekarz.pl' , 'Ewelina' , 'QwErTy!2#' , '678650560' , 'Kopytko' , 1 ),
+(5, 'jadwigasledz@twojlekarz.pl' , 'Jadwiga' , 'qpwoeiruty' , '534753902' , 'Śledź' ,  null);
 
 insert into doctor_specialization (id_specialization, id_doctor) values
     (1, 1),
     (1, 3),
     (1, 4),
-    (2, 8),
-    (2, 9),
+    (2, 1),
+    (2, 2),
     (2, 5),
-    (3, 10);
+    (3, 5);
 
 insert into form (id_form, comment, date, message, status, subject , id_doctor, id_patient) values
     (1, 'Należy zwiększyć spożycie witaminy C.' , '2019-01-30 14:25:11' , 'Szanowny Panie Doktorze, ciągle jest mi zimno i chce mi się wiecznie spać. Co mam zrobic?' , 'Zakończone' , 'Problem' , 1 , 1),

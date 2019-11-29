@@ -11,5 +11,4 @@ public class AdministratorDTO {
     private String surname;
     private String password;
     private String email;
-    private String login;
 }

@@ -18,10 +18,14 @@ public class Patient {
     private String name;
     private String surname;
     private String password;
+
+    @Column(unique = true)
     private String email;
-    private String login;
+
     private String phoneNumber;
     private Character sex;
+
+    @Column(unique = true)
     private String pesel;
 
     @OneToMany(mappedBy = "patient")

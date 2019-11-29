@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 import java.util.Set;
 
 @Getter
@@ -20,7 +19,6 @@ public class Doctor {
     private String surname;
     private String password;
     private String email;
-    private String login;
     private String phoneNumber;
 
     @OneToMany(mappedBy = "doctor")

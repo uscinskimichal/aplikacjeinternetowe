@@ -4,12 +4,7 @@ import aplikacjeinternetowe.ai.loginForms.LoginForm;
 import aplikacjeinternetowe.ai.loginForms.LoginFormResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 @Service
 public class LoginServiceImpl implements LoginService {
@@ -22,26 +17,26 @@ public class LoginServiceImpl implements LoginService {
         this.httpStatus = httpStatus;
     }
 
-    HttpStatus httpStatus;
+    private HttpStatus httpStatus;
 
     @Autowired
-    DoctorServiceImpl doctorService;
+    private DoctorServiceImpl doctorService;
 
     @Autowired
-    PatientServiceImpl patientService;
+    private PatientServiceImpl patientService;
 
 
     public LoginFormResponse login(LoginForm loginForm) {
-        if (doctorService.doctorRepository.existsByLoginAndPassword(loginForm.getLogin(), loginForm.getPassword())) {
+        if (doctorService.doctorRepository.existsByEmailAndPassword(loginForm.getEmail(), loginForm.getPassword())) {
             setHttpStatus(HttpStatus.OK);
             return doctorService.login(loginForm);
-        } else if (patientService.patientRepository.existsByLoginAndPassword(loginForm.getLogin(), loginForm.getPassword())) {
+        } else if (patientService.patientRepository.existsByEmailAndPassword(loginForm.getEmail(), loginForm.getPassword())) {
             setHttpStatus(HttpStatus.OK);
             return patientService.login(loginForm);
         } else {
             setHttpStatus(HttpStatus.NOT_FOUND);
             LoginFormResponse loginFormResponse = new LoginFormResponse();
-            loginFormResponse.setLogin(loginForm.getLogin());
+            loginFormResponse.setEmail(loginForm.getEmail());
             loginFormResponse.setPassword(loginForm.getPassword());
             loginFormResponse.setRole("Błedne dane logowania");
             return loginFormResponse;

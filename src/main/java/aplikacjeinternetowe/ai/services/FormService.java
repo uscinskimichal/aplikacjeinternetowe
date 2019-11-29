@@ -1,6 +1,7 @@
 package aplikacjeinternetowe.ai.services;
 
 import aplikacjeinternetowe.ai.dtos.FormDTO;
+import aplikacjeinternetowe.ai.entities.Form;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,4 +17,8 @@ public interface FormService {
     boolean editForm(FormDTO formDTO, Integer id);
 
     boolean deleteForm(Integer id);
+
+    List<FormDTO> getClientForms(int patientId);
+
+    List<FormDTO> getDoctorForms(int idDoctor);
 }

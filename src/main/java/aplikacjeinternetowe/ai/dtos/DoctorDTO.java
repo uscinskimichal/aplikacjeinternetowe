@@ -13,7 +13,6 @@ public class DoctorDTO {
     private String surname;
     private String password;
     private String email;
-    private String login;
     private String phoneNumber;
     private InstitutionDTO institution;
     private List<SpecializationDTO> specializations;

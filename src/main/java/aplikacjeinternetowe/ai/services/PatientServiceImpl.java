@@ -1,9 +1,9 @@
 package aplikacjeinternetowe.ai.services;
 
-import aplikacjeinternetowe.ai.loginForms.LoginForm;
-import aplikacjeinternetowe.ai.loginForms.LoginFormResponse;
 import aplikacjeinternetowe.ai.dtos.PatientDTO;
 import aplikacjeinternetowe.ai.entities.Patient;
+import aplikacjeinternetowe.ai.loginForms.LoginForm;
+import aplikacjeinternetowe.ai.loginForms.LoginFormResponse;
 import aplikacjeinternetowe.ai.mappers.PatientMapper;
 import aplikacjeinternetowe.ai.repositories.PatientRepository;
 import org.springframework.stereotype.Service;
@@ -68,7 +68,7 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public LoginFormResponse login(LoginForm loginForm) {
         LoginFormResponse loginFormResponse = new LoginFormResponse();
-        loginFormResponse.setLogin(loginForm.getLogin());
+        loginFormResponse.setEmail(loginForm.getEmail());
         loginFormResponse.setPassword(loginForm.getPassword());
         loginFormResponse.setRole("patient");
         return loginFormResponse;

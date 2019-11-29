@@ -59,4 +59,16 @@ public class FormServiceImpl implements FormService {
         } else
             return false;
     }
+
+    @Override
+    public List<FormDTO> getClientForms(int patientId) {
+        List<Form> forms = formRepository.findAllByPatient(patientId);
+        return formMapper.convert(forms);
+    }
+
+    @Override
+    public List<FormDTO> getDoctorForms(int idDoctor) {
+        List<Form> forms = formRepository.findAllbyDoctor(idDoctor);
+        return formMapper.convert(forms);
+    }
 }
