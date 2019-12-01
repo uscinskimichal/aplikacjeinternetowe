@@ -7,6 +7,7 @@ import aplikacjeinternetowe.ai.repositories.FormRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -35,6 +36,8 @@ public class FormServiceImpl implements FormService {
     public boolean addForm(FormDTO formDTO) {
         Form form = formMapper.convert(formDTO);
         form.setID_Form(0);
+        form.setDate(LocalDateTime.now());
+        form.setStatus("Oczekujące");
         formRepository.save(form);
         return true;
     }
@@ -69,6 +72,12 @@ public class FormServiceImpl implements FormService {
     @Override
     public List<FormDTO> getDoctorForms(int idDoctor) {
         List<Form> forms = formRepository.findAllbyDoctor(idDoctor);
+        return formMapper.convert(forms);
+    }
+
+    @Override
+    public List<FormDTO> getAvailableDoctorForms() {
+        List<Form> forms = formRepository.findAllAvailableFormsForDoctor();
         return formMapper.convert(forms);
     }
 }

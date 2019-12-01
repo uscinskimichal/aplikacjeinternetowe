@@ -11,8 +11,7 @@ import java.util.List;
 public interface FormRepository extends JpaRepository<Form, Integer> {
 
     @Query(nativeQuery = true,
-            value = "Select * from form where id_patient=?1"
-    )
+            value = "Select * from form where id_patient=?1")
     List<Form> findAllByPatient(int patientId);
 
 
@@ -22,5 +21,5 @@ public interface FormRepository extends JpaRepository<Form, Integer> {
 
     @Query(nativeQuery = true,
             value = "Select * from form where id_doctor is null")
-    List<Form> findAllAvailableFormsForDoctor(); // TO DO
+    List<Form> findAllAvailableFormsForDoctor(); // TO DO + AUTOMATYYCZNA DATA W FORM I STATUS POST
 }

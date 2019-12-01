@@ -27,6 +27,12 @@ public class FormController {
     }
 
 
+    @GetMapping("/forms/doctorAll")
+    public ResponseEntity<List<FormDTO>> getDoctorAvailableForms() {
+        return new ResponseEntity<>(formService.getAvailableDoctorForms(),HttpStatus.OK);
+    }
+
+
     @GetMapping("/forms")
     public ResponseEntity<List<FormDTO>> getAllForms() {
         return new ResponseEntity<>(formService.getAllForms(), HttpStatus.OK);

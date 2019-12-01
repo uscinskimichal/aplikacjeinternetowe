@@ -21,4 +21,6 @@ public interface FormService {
     List<FormDTO> getClientForms(int patientId);
 
     List<FormDTO> getDoctorForms(int idDoctor);
+
+    List<FormDTO> getAvailableDoctorForms();
 }
