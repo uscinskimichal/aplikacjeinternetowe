@@ -1,8 +1,6 @@
 package aplikacjeinternetowe.ai.services;
 
 import aplikacjeinternetowe.ai.dtos.DoctorDTO;
-import aplikacjeinternetowe.ai.loginForms.LoginForm;
-import aplikacjeinternetowe.ai.loginForms.LoginFormResponse;
 import aplikacjeinternetowe.ai.entities.Doctor;
 import aplikacjeinternetowe.ai.mappers.DoctorMapper;
 import aplikacjeinternetowe.ai.repositories.DoctorRepository;
@@ -62,14 +60,6 @@ public class DoctorServiceImpl implements DoctorService {
             return false;
     }
 
-    @Override
-    public LoginFormResponse login(LoginForm loginForm, int userId) {
-        LoginFormResponse loginFormResponse = new LoginFormResponse();
-        loginFormResponse.setEmail(loginForm.getEmail());
-        loginFormResponse.setPassword(loginForm.getPassword());
-        loginFormResponse.setRole("doctor");
-        loginFormResponse.setUserId(userId);
-        return loginFormResponse;
-    }
+
 
 }

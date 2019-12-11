@@ -7,8 +7,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DoctorRepository extends JpaRepository<Doctor, Integer> {
-    boolean existsByEmailAndPassword(String email, String password);
-
-    @Query(nativeQuery = true , value = "SELECT d.id_doctor from doctor d where d.email=?1 and d.password=?2")
-    int findIdByLoginDataDoctor(String email, String password);
+    Doctor findByEmail(String email);
 }
