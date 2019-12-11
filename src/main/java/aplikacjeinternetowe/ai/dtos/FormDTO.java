@@ -17,4 +17,6 @@ public class FormDTO {
     private LocalDateTime date;
     private PatientDTO patient;
     private DoctorDTO doctor;
+    private int doctor_active_flag;
+    private int patient_active_flag;
 }

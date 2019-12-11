@@ -42,10 +42,10 @@ insert into doctor_specialization (id_specialization, id_doctor) values
     (2, 5),
     (3, 5);
 
-insert into form (id_form, comment, date, message, status, subject , id_doctor, id_patient) values
-    (1, 'Należy zwiększyć spożycie witaminy C.' , '2019-01-30 14:25:11' , 'Szanowny Panie Doktorze, ciągle jest mi zimno i chce mi się wiecznie spać. Co mam zrobic?' , 'Zakończone' , 'Problem' , 1 , 1),
-    (2, 'Należy się umyć.' , '2019-10-16 22:43:38' , 'Nie mogę chodzić, co zrobić?' , 'Zakończone' , 'Głupie pytanie - proszę o głupią odpowiedź' , 5 , 2),
-    (3, null , '2019-04-08 09:21:55' , 'Nie mogę zasnąć. Co mam na to poradzić?' , 'W toku' , 'Bezsenność' , 3 , 4);
+insert into form (id_form, comment, date, message, status, subject , id_doctor, id_patient,doctor_active_flag,patient_active_flag) values
+    (1, 'Należy zwiększyć spożycie witaminy C.' , '2019-01-30 14:25:11' , 'Szanowny Panie Doktorze, ciągle jest mi zimno i chce mi się wiecznie spać. Co mam zrobic?' , 'Zakończone' , 'Problem' , 1 , 1,true,true),
+    (2, 'Należy się umyć.' , '2019-10-16 22:43:38' , 'Nie mogę chodzić, co zrobić?' , 'Zakończone' , 'Głupie pytanie - proszę o głupią odpowiedź' , 5 , 2,1,1),
+    (3, null , '2019-04-08 09:21:55' , 'Nie mogę zasnąć. Co mam na to poradzić?' , 'W toku' , 'Bezsenność' , 3 , 4,1,1);
 
 
 

@@ -14,7 +14,7 @@ public class LoginController {
     @Autowired
     LoginServiceImpl loginService;
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<LoginFormResponse> login(
             @RequestBody LoginForm loginForm) {
         return new ResponseEntity<>(loginService.login(loginForm), loginService.getHttpStatus());

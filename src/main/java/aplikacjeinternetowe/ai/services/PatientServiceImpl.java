@@ -66,11 +66,12 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public LoginFormResponse login(LoginForm loginForm) {
+    public LoginFormResponse login(LoginForm loginForm, int userId) {
         LoginFormResponse loginFormResponse = new LoginFormResponse();
         loginFormResponse.setEmail(loginForm.getEmail());
         loginFormResponse.setPassword(loginForm.getPassword());
         loginFormResponse.setRole("patient");
+        loginFormResponse.setUserId(userId);
         return loginFormResponse;
     }
 }

@@ -2,11 +2,15 @@ package aplikacjeinternetowe.ai.controllers;
 
 import aplikacjeinternetowe.ai.dtos.FormDTO;
 import aplikacjeinternetowe.ai.services.FormService;
+import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -16,20 +20,35 @@ public class FormController {
     private FormService formService;
 
     @GetMapping("/forms/patient/{patientId}")
-    public ResponseEntity<List<FormDTO>> getClientForms(@PathVariable int patientId) {
-        return new ResponseEntity<>(formService.getClientForms(patientId),HttpStatus.OK);
+    public ResponseEntity<List<FormDTO>> findAllbyPatientFilter(@PathVariable int patientId,
+                                                                @RequestParam(required = false) String status,
+                                                                @RequestParam(required = false)
+                                                                @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateFrom,
+                                                                @RequestParam(required = false)
+                                                                @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateTo
+    ) {
+        return new ResponseEntity<>(formService.getClientForms(patientId, status, dateFrom, dateTo), HttpStatus.OK);
     }
 
 
     @GetMapping("/forms/doctor/{doctorId}")
-    public ResponseEntity<List<FormDTO>> getDoctorForms(@PathVariable int doctorId) {
-        return new ResponseEntity<>(formService.getDoctorForms(doctorId),HttpStatus.OK);
+    public ResponseEntity<List<FormDTO>> findAllbyDoctorFilter(@PathVariable int doctorId,
+                                                               @RequestParam(required = false) String status,
+                                                               @RequestParam(required = false)
+                                                               @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateFrom,
+                                                               @RequestParam(required = false)
+                                                               @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateTo) {
+        return new ResponseEntity<>(formService.getDoctorForms(doctorId, status, dateFrom, dateTo), HttpStatus.OK);
     }
 
 
     @GetMapping("/forms/doctorAll")
-    public ResponseEntity<List<FormDTO>> getDoctorAvailableForms() {
-        return new ResponseEntity<>(formService.getAvailableDoctorForms(),HttpStatus.OK);
+    public ResponseEntity<List<FormDTO>> getDoctorAvailableForms(@RequestParam(required = false) String status,
+                                                                 @RequestParam(required = false)
+                                                                 @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateFrom,
+                                                                 @RequestParam(required = false)
+                                                                 @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateTo) {
+        return new ResponseEntity<>(formService.getAvailableDoctorForms(status, dateFrom, dateTo), HttpStatus.OK);
     }
 
 
@@ -63,9 +82,13 @@ public class FormController {
     }
 
     @DeleteMapping("/forms/{id}")
-    public ResponseEntity deleteForm(@PathVariable Integer id) {
-        if (formService.deleteForm(id))
+    public ResponseEntity deleteForm(@PathVariable Integer id,
+                                     @RequestParam String role,
+                                     @RequestParam int userId) {
+        if (formService.deleteForm(id, role, userId))
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
+
+
 }

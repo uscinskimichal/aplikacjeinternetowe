@@ -20,6 +20,9 @@ public class Form {
     private String comment;
     private String status;
     private LocalDateTime date;
+    private int doctor_active_flag;
+    private int patient_active_flag;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_patient" , nullable = false)

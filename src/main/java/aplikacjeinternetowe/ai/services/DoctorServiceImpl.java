@@ -43,31 +43,32 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public boolean editDoctor(DoctorDTO doctorDTO, Integer id) {
-            if (doctorRepository.existsById(id)) {
-                Doctor doctor = doctorMapper.convert(doctorDTO);
-                doctor.setID_Doctor(id);
-                doctorRepository.save(doctor);
-                return true;
-            } else
-                return false;
+        if (doctorRepository.existsById(id)) {
+            Doctor doctor = doctorMapper.convert(doctorDTO);
+            doctor.setID_Doctor(id);
+            doctorRepository.save(doctor);
+            return true;
+        } else
+            return false;
     }
 
     @Override
     public boolean deleteDoctor(Integer id) {
-            Doctor doctor = doctorRepository.findById(id).orElse(null);
-            if (doctor!=null) {
-                doctorRepository.delete(doctor);
-                return true;
-            } else
-                return false;
+        Doctor doctor = doctorRepository.findById(id).orElse(null);
+        if (doctor != null) {
+            doctorRepository.delete(doctor);
+            return true;
+        } else
+            return false;
     }
 
     @Override
-    public LoginFormResponse login(LoginForm loginForm) {
+    public LoginFormResponse login(LoginForm loginForm, int userId) {
         LoginFormResponse loginFormResponse = new LoginFormResponse();
         loginFormResponse.setEmail(loginForm.getEmail());
         loginFormResponse.setPassword(loginForm.getPassword());
         loginFormResponse.setRole("doctor");
+        loginFormResponse.setUserId(userId);
         return loginFormResponse;
     }
 

@@ -4,6 +4,8 @@ import aplikacjeinternetowe.ai.dtos.FormDTO;
 import aplikacjeinternetowe.ai.entities.Form;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -16,11 +18,11 @@ public interface FormService {
 
     boolean editForm(FormDTO formDTO, Integer id);
 
-    boolean deleteForm(Integer id);
+    boolean deleteForm(Integer id, String role, int userId);
 
-    List<FormDTO> getClientForms(int patientId);
+    List<FormDTO> getClientForms(int patientId, String status, LocalDateTime dateFrom , LocalDateTime dateTo);
 
-    List<FormDTO> getDoctorForms(int idDoctor);
+    List<FormDTO> getDoctorForms(int idDoctor, String status, LocalDateTime dateFrom , LocalDateTime dateTo);
 
-    List<FormDTO> getAvailableDoctorForms();
+    List<FormDTO> getAvailableDoctorForms(String status, LocalDateTime dateFrom, LocalDateTime dateTo);
 }

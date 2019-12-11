@@ -19,5 +19,5 @@ public interface DoctorService {
 
     boolean deleteDoctor(Integer id);
 
-    LoginFormResponse login(LoginForm loginForm);
+    LoginFormResponse login(LoginForm loginForm, int userId);
 }

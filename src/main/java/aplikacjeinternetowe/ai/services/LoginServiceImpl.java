@@ -19,6 +19,7 @@ public class LoginServiceImpl implements LoginService {
 
     private HttpStatus httpStatus;
 
+
     @Autowired
     private DoctorServiceImpl doctorService;
 
@@ -27,18 +28,22 @@ public class LoginServiceImpl implements LoginService {
 
 
     public LoginFormResponse login(LoginForm loginForm) {
+        int userId;
         if (doctorService.doctorRepository.existsByEmailAndPassword(loginForm.getEmail(), loginForm.getPassword())) {
             setHttpStatus(HttpStatus.OK);
-            return doctorService.login(loginForm);
+            userId = doctorService.doctorRepository.findIdByLoginDataDoctor(loginForm.getEmail(), loginForm.getPassword());
+            return doctorService.login(loginForm, userId);
         } else if (patientService.patientRepository.existsByEmailAndPassword(loginForm.getEmail(), loginForm.getPassword())) {
             setHttpStatus(HttpStatus.OK);
-            return patientService.login(loginForm);
+            userId = patientService.patientRepository.findIdByLoginDataPatient(loginForm.getEmail(), loginForm.getPassword());
+            return patientService.login(loginForm, userId);
         } else {
             setHttpStatus(HttpStatus.NOT_FOUND);
             LoginFormResponse loginFormResponse = new LoginFormResponse();
             loginFormResponse.setEmail(loginForm.getEmail());
             loginFormResponse.setPassword(loginForm.getPassword());
             loginFormResponse.setRole("Błedne dane logowania");
+            loginFormResponse.setUserId(0);
             return loginFormResponse;
         }
 
