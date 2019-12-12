@@ -40,9 +40,10 @@ public class PatientController {
     @PutMapping("/patients/{id}")
     public ResponseEntity editPatient(@RequestBody PatientDTO patientDTO,
                                       @PathVariable Integer id){
+
         if(patientService.editPatient(patientDTO,id)) //??
             return new ResponseEntity(HttpStatus.ACCEPTED);
-        return new ResponseEntity(HttpStatus.NOT_FOUND);
+        return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
     }
 
     @DeleteMapping("/patients/{id}")

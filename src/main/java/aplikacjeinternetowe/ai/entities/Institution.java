@@ -19,8 +19,17 @@ public class Institution {
     private String phoneNumber;
     private BigDecimal xCoordinates;
     private BigDecimal yCoordinates;
+    private String description;
 
 
     @OneToMany(mappedBy = "institution")
     private Set<Doctor> doctors;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "institution_specialization",
+            inverseJoinColumns  = {@JoinColumn(name = "id_specialization")},
+            joinColumns = {@JoinColumn(name = "id_institution")}
+    )
+    Set<Specialization> institute_specializations;
 }

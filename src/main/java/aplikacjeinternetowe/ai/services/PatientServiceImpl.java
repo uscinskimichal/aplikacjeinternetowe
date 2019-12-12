@@ -44,9 +44,14 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public boolean editPatient(PatientDTO patientDTO, Integer id) {
-        if (patientRepository.existsById(id)) {
-            Patient patient = patientMapper.convert(patientDTO);
-            patient.setID_Patient(id);
+        if (patientRepository.findByEmail(patientDTO.getEmail()) == null && patientRepository.existsById(id)) {
+            Patient patient = patientRepository.findById(id).orElse(null);
+            if (patientDTO.getEmail() != null)
+                patient.setEmail(patientDTO.getEmail());
+            if (patientDTO.getPhoneNumber() != null)
+                patient.setPhoneNumber(patientDTO.getPhoneNumber());
+            if (patientDTO.getPassword() != null)
+                patient.setPassword(patientDTO.getPassword());
             patientRepository.save(patient);
             return true;
         } else
@@ -56,7 +61,7 @@ public class PatientServiceImpl implements PatientService {
     @Override
     public boolean deletePatient(Integer id) {
         Patient patient = patientRepository.findById(id).orElse(null);
-        if (patient!=null) {
+        if (patient != null) {
             patientRepository.delete(patient);
             return true;
         } else

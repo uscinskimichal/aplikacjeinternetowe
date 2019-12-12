@@ -21,4 +21,7 @@ public class Specialization {
     @ManyToMany(mappedBy = "specializations")
     private Set<Doctor> doctors;
 
+    @ManyToMany(mappedBy = "institute_specializations")
+    private Set<Institution> institutions;
+
 }

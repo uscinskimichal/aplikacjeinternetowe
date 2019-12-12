@@ -17,10 +17,10 @@ insert into specialization (id_specialization, name) values
     (9, 'Psychiatra'),
     (10, 'Psycholog');
 
-insert into institution (id_institution, name, phone_number, x_coordinates, y_coordinates) values
-    (1, 'Przychodnia Lekarska "U Stasia"' , '400500600' , 52.821 , 53.211),
-    (2, 'Szpital Wojewódzki' , '600600600' , 55.764 , 51.733),
-    (3, 'Prywatna Klinika' , '478900790' , 49.142 , 52.809);
+insert into institution (id_institution, name, phone_number, x_coordinates, y_coordinates , description) values
+    (1, 'Przychodnia Lekarska "U Stasia"' , '400500600' , 52.821 , 53.211 , 'Przychodnia przyjazna zwierzętom.'),
+    (2, 'Szpital Wojewódzki' , '600600600' , 55.764 , 51.733 , 'Szpital dostosowany do potrzeb osób niepełnosprawnych.'),
+    (3, 'Prywatna Klinika' , '478900790' , 49.142 , 52.809 , 'Klinika oferuje darmowy dostęp do sieci Wi-Fi na terenie budynku.');
 
 insert into administrator (id_administrator, email, name, password, surname) values
     (1, 'admin1@twojlekarz.pl' , 'Adam' , 'admin1' , 'Gałązka'),
@@ -48,7 +48,17 @@ insert into form (id_form, comment, date, message, status, subject , id_doctor, 
     (3, null , '2019-04-08 09:21:55' , 'Nie mogę zasnąć. Co mam na to poradzić?' , 'W toku' , 'Bezsenność' , 3 , 4,1,1);
 
 
-
+insert into institution_specialization (id_institution , id_specialization) values
+    (1, 1),
+    (1, 2),
+    (1, 3),
+    (2, 3),
+    (2, 2),
+    (2, 4),
+    (2, 6),
+    (3, 2),
+    (3, 1),
+    (3, 8);
 
 
 

@@ -1,7 +1,10 @@
 package aplikacjeinternetowe.ai.entities;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -9,6 +12,7 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
+@DynamicUpdate
 public class Patient {
 
     @Id
