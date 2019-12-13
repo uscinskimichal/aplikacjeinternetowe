@@ -75,8 +75,9 @@ public class FormController {
 
     @PutMapping("/forms/{id}")
     public ResponseEntity editForm(@RequestBody FormDTO formDTO,
-                                   @PathVariable Integer id) {
-        if (formService.editForm(formDTO, id)) //??
+                                   @PathVariable Integer id,
+                                   @RequestParam int doctorId) {
+        if (formService.editForm(formDTO, id, doctorId)) //??
             return new ResponseEntity(HttpStatus.ACCEPTED);
         return new ResponseEntity(HttpStatus.NOT_FOUND);
     }

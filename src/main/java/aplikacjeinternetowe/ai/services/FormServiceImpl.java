@@ -2,6 +2,7 @@ package aplikacjeinternetowe.ai.services;
 
 import aplikacjeinternetowe.ai.dtos.FormDTO;
 
+import aplikacjeinternetowe.ai.entities.Doctor;
 import aplikacjeinternetowe.ai.entities.Form;
 import aplikacjeinternetowe.ai.mappers.DoctorMapper;
 import aplikacjeinternetowe.ai.mappers.FormMapper;
@@ -54,12 +55,15 @@ public class FormServiceImpl implements FormService {
     }
 
     @Override
-    public boolean editForm(FormDTO formDTO, Integer id) {
+    public boolean editForm(FormDTO formDTO, Integer id, int doctorId) {
         if (formRepository.existsById(id)) {
-            Form form = formMapper.convert(formDTO);
-            form.setID_Form(id);
+            Form form = formRepository.findById(id).orElse(null);
+            form.setComment(formDTO.getComment());
             form.setStatus("Przeanalizowany");
             form.setPatient_active_flag(1);
+            Doctor doctor = new Doctor();
+            doctor.setID_Doctor(doctorId);
+            form.setDoctor(doctor);
             formRepository.save(form);
             return true;
         } else

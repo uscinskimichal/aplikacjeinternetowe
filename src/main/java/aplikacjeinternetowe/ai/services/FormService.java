@@ -16,7 +16,7 @@ public interface FormService {
 
     boolean addForm(FormDTO formDTO);
 
-    boolean editForm(FormDTO formDTO, Integer id);
+    boolean editForm(FormDTO formDTO, Integer id, int doctorId);
 
     boolean deleteForm(Integer id, String role, int userId);
 

@@ -41,9 +41,12 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public boolean editDoctor(DoctorDTO doctorDTO, Integer id) {
-        if (doctorRepository.existsById(id)) {
-            Doctor doctor = doctorMapper.convert(doctorDTO);
-            doctor.setID_Doctor(id);
+        if (doctorRepository.findByEmail(doctorDTO.getEmail()) == null && doctorRepository.existsById(id)) {
+            Doctor doctor = doctorRepository.findById(id).orElse(null);
+            if (doctorDTO.getEmail() != null)
+                doctor.setEmail(doctorDTO.getEmail());
+            if (doctorDTO.getPassword() != null)
+                doctor.setPassword(doctorDTO.getPassword());
             doctorRepository.save(doctor);
             return true;
         } else
@@ -59,7 +62,6 @@ public class DoctorServiceImpl implements DoctorService {
         } else
             return false;
     }
-
 
 
 }

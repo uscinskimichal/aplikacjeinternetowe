@@ -32,17 +32,20 @@ public class AdministratorServiceImpl implements AdministratorService {
 
     @Override
     public boolean addAdministrator(AdministratorDTO administratorDTO) {
-            Administrator administrator = administratorMapper.convert(administratorDTO);
-            administrator.setID_Administrator(0);
-            administratorRepository.save(administrator);
-            return true;
+        Administrator administrator = administratorMapper.convert(administratorDTO);
+        administrator.setID_Administrator(0);
+        administratorRepository.save(administrator);
+        return true;
     }
 
     @Override
     public boolean editAdministrator(AdministratorDTO administratorDTO, Integer id) {
-        if (administratorRepository.existsById(id)) {
-            Administrator administrator = administratorMapper.convert(administratorDTO);
-            administrator.setID_Administrator(id);
+        if (administratorRepository.findByEmail(administratorDTO.getEmail()) == null && administratorRepository.existsById(id)) {
+            Administrator administrator = administratorRepository.findById(id).orElse(null);
+            if (administratorDTO.getEmail() != null)
+                administrator.setEmail(administratorDTO.getEmail());
+            if (administratorDTO.getPassword() != null)
+                administrator.setPassword(administratorDTO.getPassword());
             administratorRepository.save(administrator);
             return true;
         } else
@@ -52,7 +55,7 @@ public class AdministratorServiceImpl implements AdministratorService {
     @Override
     public boolean deleteAdministrator(Integer id) {
         Administrator administrator = administratorRepository.findById(id).orElse(null);
-        if (administrator!=null) {
+        if (administrator != null) {
             administratorRepository.delete(administrator);
             return true;
         } else
