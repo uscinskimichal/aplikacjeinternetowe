@@ -14,7 +14,7 @@ public interface FormService {
 
     FormDTO getForm(Integer idForm);
 
-    boolean addForm(FormDTO formDTO);
+    boolean addForm(FormDTO formDTO, int patientId);
 
     boolean editForm(FormDTO formDTO, Integer id, int doctorId);
 

@@ -66,8 +66,9 @@ public class FormController {
     }
 
     @PostMapping("/forms")
-    public ResponseEntity addForm(@RequestBody FormDTO formDTO) {
-        if (formService.addForm(formDTO))
+    public ResponseEntity addForm(@RequestBody FormDTO formDTO
+            , @RequestParam int patientId) {
+        if (formService.addForm(formDTO, patientId))
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         return new ResponseEntity(HttpStatus.BAD_REQUEST);
 
@@ -77,7 +78,7 @@ public class FormController {
     public ResponseEntity editForm(@RequestBody FormDTO formDTO,
                                    @PathVariable Integer id,
                                    @RequestParam int doctorId) {
-        if (formService.editForm(formDTO, id, doctorId)) //??
+        if (formService.editForm(formDTO, id, doctorId))
             return new ResponseEntity(HttpStatus.ACCEPTED);
         return new ResponseEntity(HttpStatus.NOT_FOUND);
     }

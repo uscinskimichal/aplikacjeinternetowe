@@ -4,6 +4,7 @@ import aplikacjeinternetowe.ai.dtos.FormDTO;
 
 import aplikacjeinternetowe.ai.entities.Doctor;
 import aplikacjeinternetowe.ai.entities.Form;
+import aplikacjeinternetowe.ai.entities.Patient;
 import aplikacjeinternetowe.ai.mappers.DoctorMapper;
 import aplikacjeinternetowe.ai.mappers.FormMapper;
 import aplikacjeinternetowe.ai.repositories.DoctorRepository;
@@ -43,13 +44,17 @@ public class FormServiceImpl implements FormService {
     }
 
     @Override
-    public boolean addForm(FormDTO formDTO) {
+    public boolean addForm(FormDTO formDTO, int patientId) {
         Form form = formMapper.convert(formDTO);
         form.setID_Form(0);
         form.setDate(LocalDateTime.now());
         form.setStatus("Wysłany");
         form.setPatient_active_flag(1);
         form.setDoctor_active_flag(1);
+
+        Patient patient = new Patient();
+        patient.setID_Patient(patientId);
+        form.setPatient(patient);
         formRepository.save(form);
         return true;
     }

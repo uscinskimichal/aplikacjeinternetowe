@@ -8,6 +8,7 @@ import java.util.Properties;
 public class EmailService {
 
     public void sendEmail(String receiverName, String userPassword, String receiverEmail) {
+        // receiverEmail is not used in order to prevent sending spam to random users
 
         final String username = "aplikacje.internetowe.wat.2019@gmail.com";
         final String password = "Ai.wat2019!";
@@ -16,7 +17,7 @@ public class EmailService {
         prop.put("mail.smtp.host", "smtp.gmail.com");
         prop.put("mail.smtp.port", "587");
         prop.put("mail.smtp.auth", "true");
-        prop.put("mail.smtp.starttls.enable", "true"); //TLS
+        prop.put("mail.smtp.starttls.enable", "true");
 
         Session session = Session.getInstance(prop,
                 new javax.mail.Authenticator() {
