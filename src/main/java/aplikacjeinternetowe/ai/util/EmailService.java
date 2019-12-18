@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class EmailService {
 
-    public void sendEmail(String receiverName, String userPassword, String receiverEmail) throws UnsupportedEncodingException {
+    public void sendEmail(String receiverName, String userPassword, String receiverEmail){
         // receiverEmail is not used in order to prevent sending spam to random users
 
         final String username = "aplikacje.internetowe.wat.2019@gmail.com";
@@ -45,6 +45,8 @@ public class EmailService {
             System.out.println("Done");
 
         } catch (MessagingException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
     }
