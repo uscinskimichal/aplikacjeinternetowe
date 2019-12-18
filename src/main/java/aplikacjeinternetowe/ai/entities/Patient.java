@@ -27,7 +27,7 @@ public class Patient {
     private String email;
 
     private String phoneNumber;
-    private Character sex;
+    private String sex;
 
     @Column(unique = true)
     private String pesel;
