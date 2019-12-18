@@ -3,11 +3,12 @@ package aplikacjeinternetowe.ai.util;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.UnsupportedEncodingException;
 import java.util.Properties;
 
 public class EmailService {
 
-    public void sendEmail(String receiverName, String userPassword, String receiverEmail) {
+    public void sendEmail(String receiverName, String userPassword, String receiverEmail) throws UnsupportedEncodingException {
         // receiverEmail is not used in order to prevent sending spam to random users
 
         final String username = "aplikacje.internetowe.wat.2019@gmail.com";
@@ -29,7 +30,7 @@ public class EmailService {
         try {
 
             Message message = new MimeMessage(session);
-            //message.setFrom(new InternetAddress(username));
+            message.setFrom(new InternetAddress(username,"ConsultMed"));
             message.setRecipients(
                     Message.RecipientType.TO,
                     InternetAddress.parse("uscinskimichal@gmail.com , p.golawska@gmail.com" )
