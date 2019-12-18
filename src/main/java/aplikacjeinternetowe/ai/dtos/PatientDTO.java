@@ -17,6 +17,6 @@ public class PatientDTO {
     private String password;
     private String email;
     private String phoneNumber;
-    private Character sex;
+    private String sex;
     private String pesel;
 }

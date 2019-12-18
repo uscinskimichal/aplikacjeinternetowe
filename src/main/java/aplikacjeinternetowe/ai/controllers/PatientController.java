@@ -39,15 +39,15 @@ public class PatientController {
 
     @PutMapping("/patients/{id}")
     public ResponseEntity editPatient(@RequestBody PatientDTO patientDTO,
-                                      @PathVariable Integer id){
-        if(patientService.editPatient(patientDTO,id)) //??
+                                      @PathVariable Integer id) {
+        if (patientService.editPatient(patientDTO, id)) //??
             return new ResponseEntity(HttpStatus.ACCEPTED);
         return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
     }
 
     @DeleteMapping("/patients/{id}")
-    public ResponseEntity deletePatient(@PathVariable Integer id){
-        if(patientService.deletePatient(id))
+    public ResponseEntity deletePatient(@PathVariable Integer id) {
+        if (patientService.deletePatient(id))
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         return new ResponseEntity(HttpStatus.NOT_FOUND);
     }
