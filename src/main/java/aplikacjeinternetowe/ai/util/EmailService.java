@@ -28,7 +28,6 @@ public class EmailService {
                 });
 
         try {
-
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username,"ConsultMed"));
             message.setRecipients(
