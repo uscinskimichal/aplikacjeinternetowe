@@ -35,13 +35,12 @@ public class PatientController {
         if (!result.startsWith("Błąd"))
             return new ResponseEntity<>(result, HttpStatus.CREATED);
         return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
-
     }
 
     @PutMapping("/patients/{id}")
     public ResponseEntity editPatient(@RequestBody PatientDTO patientDTO,
                                       @PathVariable Integer id) {
-        if (patientService.editPatient(patientDTO, id)) //??
+        if (patientService.editPatient(patientDTO, id))
             return new ResponseEntity(HttpStatus.ACCEPTED);
         return new ResponseEntity(HttpStatus.NOT_ACCEPTABLE);
     }
