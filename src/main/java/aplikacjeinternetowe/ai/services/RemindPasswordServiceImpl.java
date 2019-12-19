@@ -22,12 +22,16 @@ public class RemindPasswordServiceImpl implements RemindPasswordService {
         if (patientRepository.findByEmail(email) != null) {
             Patient patient = patientRepository.findByEmail(email);
             EmailService emailService = new EmailService();
-            emailService.sendEmail(patient.getName(), patient.getPassword(), email);
+            emailService.sendEmail(email, "Przypomnienie hasła.", "Cześć, " + patient.getName()
+                    + "\n\nTwoje hasło to : " + patient.getPassword()
+                    + "\n\nProsimy o niezwłoczną zmianę hasła po zalogowaniu się. \n\n\nZespół ConsultMed.");
             return "Sukces, na adres email : " + email + " zostało przesłane hasło.";
         } else if (doctorRepository.findByEmail(email) != null) {
             Doctor doctor = doctorRepository.findByEmail(email);
             EmailService emailService = new EmailService();
-            emailService.sendEmail(doctor.getName(), doctor.getPassword(), email);
+            emailService.sendEmail(email, "Przypomnienie hasła.", "Cześć, " + doctor.getName()
+                    + "\n\nTwoje hasło to : " + doctor.getPassword()
+                    + "\n\nProsimy o niezwłoczną zmianę hasła po zalogowaniu się. \n\n\nZespół ConsultMed.");
             return "Sukces, na adres email : " + email + " zostało przesłane hasło.";
         } else
             return "Użytkownik o podanym adresie email nie istnieje.";

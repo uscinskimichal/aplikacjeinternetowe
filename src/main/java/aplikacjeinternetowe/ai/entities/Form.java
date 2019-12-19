@@ -25,7 +25,7 @@ public class Form {
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_patient" , nullable = false)
+    @JoinColumn(name = "id_patient")
     private Patient patient;
 
     @ManyToOne(fetch = FetchType.LAZY)

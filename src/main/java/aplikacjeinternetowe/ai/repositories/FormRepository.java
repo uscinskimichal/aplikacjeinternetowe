@@ -15,7 +15,7 @@ public interface FormRepository extends JpaRepository<Form, Integer> {
             value = "Select * from form f where f.id_doctor is null AND " +
                     "ifnull(?1,-1) = case when ?1 is null then -1 else f.status END AND " +
                     "ifnull(?2,-1) <= case when ?2 is null then -1 else f.date END AND " +
-                    "ifnull(?3,-1) >= case when ?3 is null then -1 else f.date  END " +
+                    "ifnull(?3,-1) >= case when ?3 is null then -1 else f.date  END AND f.id_patient is not null " +
                     "GROUP BY f.id_form")
     List<Form> findAllAvailableFormsForDoctor(String status, LocalDateTime dateFrom, LocalDateTime dateTo); // TO DO + AUTOMATYYCZNA DATA W FORM I STATUS POST
 

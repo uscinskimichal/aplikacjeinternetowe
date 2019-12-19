@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class EmailService {
 
-    public void sendEmail(String receiverName, String userPassword, String receiverEmail){
+    public void sendEmail(String receiverEmail, String topic, String messageContent) {
         // receiverEmail is not used in order to prevent sending spam to random users
 
         final String username = "aplikacje.internetowe.wat.2019@gmail.com";
@@ -29,19 +29,16 @@ public class EmailService {
 
         try {
             Message message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(username,"ConsultMed"));
+            message.setFrom(new InternetAddress(username, "ConsultMed"));
             message.setRecipients(
                     Message.RecipientType.TO,
-                    InternetAddress.parse("uscinskimichal@gmail.com , p.golawska@gmail.com" )
+                    InternetAddress.parse("uscinskimichal@gmail.com , p.golawska@gmail.com")
             );
-            message.setSubject("Przypomnienie hasła.");
-            message.setText("Cześć, " + receiverName
-                    + "\n\n Twoje hasło to : " + userPassword
-            + "\n\n Prosimy o niezwłoczną zmianę hasła po zalogowaniu się. \n\n\n Zespół ConsultMed.");
+            message.setSubject(topic);
+            message.setText(messageContent);
 
             Transport.send(message);
 
-            System.out.println("Done");
 
         } catch (MessagingException e) {
             e.printStackTrace();

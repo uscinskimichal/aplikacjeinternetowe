@@ -30,10 +30,11 @@ public class PatientController {
     }
 
     @PostMapping("/patients")
-    public ResponseEntity addPatient(@RequestBody PatientDTO patientDTO) {
-        if (patientService.addPatient(patientDTO))
-            return new ResponseEntity(HttpStatus.NO_CONTENT);
-        return new ResponseEntity(HttpStatus.BAD_REQUEST);
+    public ResponseEntity<String> addPatient(@RequestBody PatientDTO patientDTO) {
+        String result = patientService.addPatient(patientDTO);
+        if (!result.startsWith("Błąd"))
+            return new ResponseEntity<>(result, HttpStatus.CREATED);
+        return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 
     }
 

@@ -1,6 +1,7 @@
 package aplikacjeinternetowe.ai.services;
 
 import aplikacjeinternetowe.ai.dtos.InstitutionDTO;
+import aplikacjeinternetowe.ai.entities.Institution;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface InstitutionService {
     InstitutionDTO getInstitution(Integer institutionId);
 
     List<InstitutionDTO> getAllInstitutions();
+
+    List<InstitutionDTO> getInstitutionsBySpecialization(int id_specialization);
 }

@@ -4,9 +4,12 @@ import aplikacjeinternetowe.ai.dtos.PatientDTO;
 import aplikacjeinternetowe.ai.entities.Patient;
 import aplikacjeinternetowe.ai.mappers.PatientMapper;
 import aplikacjeinternetowe.ai.repositories.PatientRepository;
+import aplikacjeinternetowe.ai.util.EmailService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PatientServiceImpl implements PatientService {
@@ -32,14 +35,16 @@ public class PatientServiceImpl implements PatientService {
     }
 
     @Override
-    public boolean addPatient(PatientDTO patientDTO) {
+    public String addPatient(PatientDTO patientDTO) {
         if (!patientRepository.existsByPesel(patientDTO.getPesel())) {
             Patient patient = patientMapper.convert(patientDTO);
             patient.setID_Patient(0);
             patientRepository.save(patient);
-            return true;
+            EmailService emailService = new EmailService();
+            emailService.sendEmail(patient.getEmail(), "Rejestracja w systemie ConsultMed.", "Cześć, " + patient.getName() + "!\n\nDziękujemy za rejestrację w systemie ConsultMed :) \n\nOto Twoje dane dostępowe do strony:\nLogin(email) : " + patient.getEmail() + "\nHasło : " + patient.getPassword() + "\n\nŻyczymy pomyślnego korzystania z serwisu! ;)\nZespół ConsultMed");
+            return "Rejestracja zakończona sukcesem!\nNa adres email : " + patient.getEmail() + " zostały wysłane dane potrzebne do logowania.";
         } else
-            return false;
+            return "Błąd!\nRejestracja zakończona niepowodzeniem.\nUżytownik o podanym adresie email lub numerze PESEL juz istnieje!";
     }
 
     @Override
@@ -62,6 +67,7 @@ public class PatientServiceImpl implements PatientService {
     public boolean deletePatient(Integer id) {
         Patient patient = patientRepository.findById(id).orElse(null);
         if (patient != null) {
+            patient.getForms().forEach(a -> a.setPatient(null));
             patientRepository.delete(patient);
             return true;
         } else

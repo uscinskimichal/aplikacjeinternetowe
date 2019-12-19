@@ -15,6 +15,11 @@ public class InstitutionController {
     @Autowired
     private InstitutionService institutionService;
 
+    @GetMapping("/institutions/spec/{id_specialization}")
+    public ResponseEntity<List<InstitutionDTO>> getInstititionsBySpecialization(@PathVariable int id_specialization) {
+        return new ResponseEntity<>(institutionService.getInstitutionsBySpecialization(id_specialization), HttpStatus.OK);
+    }
+
 
     @GetMapping("/institutions")
     public ResponseEntity<List<InstitutionDTO>> getAllInstitutions() {
@@ -39,7 +44,7 @@ public class InstitutionController {
 
     @PutMapping("/institutions/{id}")
     public ResponseEntity editInstitution(@RequestBody InstitutionDTO institutionDTO,
-                                             @PathVariable Integer id) {
+                                          @PathVariable Integer id) {
         if (institutionService.editInstitution(institutionDTO, id)) //??
             return new ResponseEntity(HttpStatus.ACCEPTED);
         return new ResponseEntity(HttpStatus.NOT_FOUND);

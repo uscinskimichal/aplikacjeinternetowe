@@ -58,4 +58,10 @@ public class InstitutionServiceImpl implements InstitutionService {
         List<Institution> institutions = institutionRepository.findAll();
         return institutionMapper.convert(institutions);
     }
+
+    @Override
+    public List<InstitutionDTO> getInstitutionsBySpecialization(int id_specialization) {
+        List<Institution> institutions = institutionRepository.getInstitutionsFiltered(id_specialization);
+        return institutionMapper.convert(institutions);
+    }
 }
