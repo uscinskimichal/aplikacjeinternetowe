@@ -45,7 +45,15 @@ insert into doctor_specialization (id_specialization, id_doctor) values
 insert into form (id_form, comment, date, message, status, subject , id_doctor, id_patient,doctor_active_flag,patient_active_flag) values
     (1, 'Należy zwiększyć spożycie witaminy C.' , '2019-01-30 14:25:11' , 'Szanowny Panie Doktorze, ciągle jest mi zimno i chce mi się wiecznie spać. Co mam zrobic?' , 'Zakończone' , 'Problem' , 1 , 1,true,true),
     (2, 'Należy się umyć.' , '2019-10-16 22:43:38' , 'Nie mogę chodzić, co zrobić?' , 'Zakończone' , 'Głupie pytanie - proszę o głupią odpowiedź' , 5 , 2,1,1),
-    (3, null , '2019-04-08 09:21:55' , 'Nie mogę zasnąć. Co mam na to poradzić?' , 'W toku' , 'Bezsenność' , 3 , 4,1,1);
+    (3, null , '2018-07-18 19:27:35' , 'Ciągle chce mi się spać i pić. Co robić?' , 'W toku' , 'Ciągły sen i pragnienie' , null , 4,1,1),
+    (4, null , '2019-11-28 06:51:25' , 'Od 2 tygodni doskwiera mi przeszywający ból w przedniej części czoła.' , 'W toku' , 'Przeszywający ból głowy' , null , 1,1,1),
+    (5, 'Ranę należy smarować maścią z dużą zawartością witaminy A.' , '2017-01-04 19:06:55' , 'Podczas prac ogrodowych wbiłem sobie ciupagę w stopę, co mam robić z raną?' , 'Zakończone' , 'Góralska przygoda' , 2 , 5,1,1),
+    (6, null , '2019-09-05 12:42:55' , 'Nie mogę złapać oddechu, czuję jakbym się dusił.' , 'W toku' , 'Duszność' , null , 2,1,1),
+    (7, 'Należy ogarniczyć spożycie alkoholu.' , '2019-06-11 09:21:55' , 'Trzęsą mi się ręce i jestem bardzo agresywny, co poradzić?' , 'Zakończone' , 'Trzęsąca agresja' , 5 , 5,1,1),
+    (8, null , '2019-04-18 21:21:42' , 'Ciągle boli mnie głowa oraz mam zatkany nos, co poradzić?' , 'W toku' , 'Głowa i nos' , null , 5,1,1),
+    (9, 'Zwiększyć ilość białka w diecie.' , '2019-10-28 15:09:52' , 'Pomimo ćwiczeń nie odnotowuję wzrostu masy mięśniowej.' , 'Zakończone' , 'Brak wyników' , 1 , 1,1,1),
+    (10, 'Udać się na specjalizstyczne badania balistyczne.' , '2019-12-12 14:21:12' , 'Podczas chodzenia odczuwam silny ból w lewym kolanie.' , 'Zakończone' , 'Kolano' , 3 , 3,1,1),
+    (11, null , '2019-07-09 05:29:25' , 'Ciągle chce mi się spać oraz trzęsie mi się powieka.' , 'W toku' , 'Sen oraz powieka' , null , 4,1,1);
 
 
 insert into institution_specialization (id_institution , id_specialization) values
