@@ -70,17 +70,21 @@ public class GoogleCalendarServiceImpl implements GoogleCalendarService {
         String pageToken = null;
         List<Event> eventsList = new ArrayList<>();
         List<EventDTOResponse> finalEvents = new ArrayList<>();
-        do {
-            Events events = service.events().list("primary").setPageToken(pageToken).execute();
-            eventsList.addAll(events.getItems());
-            pageToken = events.getNextPageToken();
-        } while (pageToken != null);
-        eventsList.forEach(a-> System.out.println(a.getStart().getDateTime()));
-        eventsList.stream().map(a->{
-            finalEvents.add(new EventDTOResponse(a.getSummary() , a.getDescription(), a.getStart().getDateTime().toString(), a.getEnd().getDateTime().toString() , a.getLocation()));
+        try {
+            do {
+                Events events = service.events().list("primary").setPageToken(pageToken).execute();
+                eventsList.addAll(events.getItems());
+                pageToken = events.getNextPageToken();
+            } while (pageToken != null);
+            eventsList.forEach(a -> System.out.println(a.getStart().getDateTime()));
+            eventsList.stream().map(a -> {
+                finalEvents.add(new EventDTOResponse(a.getSummary(), a.getDescription(), a.getStart().getDateTime().toString(), a.getEnd().getDateTime().toString(), a.getLocation()));
+                return finalEvents;
+            }).collect(Collectors.toList());
             return finalEvents;
-        }).collect(Collectors.toList());
-        return finalEvents;
+        } catch (NullPointerException npe) {
+            return null;
+        }
     }
 
     @Override
@@ -119,7 +123,7 @@ public class GoogleCalendarServiceImpl implements GoogleCalendarService {
     }
 
     @Override
-    public void logout(){
+    public void logout() {
         Runtime runtime = Runtime.getRuntime();
         try {
             runtime.exec("rundll32 url.dll,FileProtocolHandler https://www.google.com/accounts/Logout?continue=https://appengine.google.com/_ah/logout?continue=http://google.pl");

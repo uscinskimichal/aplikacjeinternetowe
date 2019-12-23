@@ -49,7 +49,7 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public boolean editPatient(PatientDTO patientDTO, Integer id) {
-        if (patientRepository.findByEmail(patientDTO.getEmail()) == null && patientRepository.existsById(id)) {
+        if ((patientRepository.findByEmail(patientDTO.getEmail()) == null || patientRepository.findByEmail(patientDTO.getEmail()).getEmail().equals(patientDTO.getEmail()))&& patientRepository.existsById(id)) {
             Patient patient = patientRepository.findById(id).orElse(null);
             if (patientDTO.getEmail() != null)
                 patient.setEmail(patientDTO.getEmail());

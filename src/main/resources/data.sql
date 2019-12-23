@@ -18,9 +18,12 @@ insert into specialization (id_specialization, name) values
     (10, 'Psycholog');
 
 insert into institution (id_institution, name, phone_number, x_coordinates, y_coordinates , description) values
-    (1, 'Przychodnia Lekarska "U Stasia"' , '400500600' , 52.821 , 53.211 , 'Przychodnia przyjazna zwierzętom.'),
-    (2, 'Szpital Wojewódzki' , '600600600' , 55.764 , 51.733 , 'Szpital dostosowany do potrzeb osób niepełnosprawnych.'),
-    (3, 'Prywatna Klinika' , '478900790' , 49.142 , 52.809 , 'Klinika oferuje darmowy dostęp do sieci Wi-Fi na terenie budynku.');
+    (1, 'Przychodnia Lekarska "U Stasia"' , '400500600' , 52.168 , 20.807 , 'Przychodnia przyjazna zwierzętom.'),
+    (2, 'Szpital Wojewódzki' , '600600600' , 52.153 , 21.044 , 'Szpital dostosowany do potrzeb osób niepełnosprawnych.'),
+    (3, 'Prywatna Klinika' , '478900790' , 52.105 , 21.243 , 'Klinika oferuje darmowy dostęp do sieci Wi-Fi na terenie budynku.'),
+    (4, 'Prywatna Kliknika dr Biały' , '567234890' , 52.222 , 20.978 , 'W weekendy oddział jest nieczynny.'),
+    (5, 'Szpital Wojewódzki' , '452278967' , 52.273 , 21.048 , 'Darmowy parking do 1h, każda kolejna godzina 5zł.'),
+    (6, 'Przychodnia lekarska ' , '867400897' , 52.197 , 21.012 , 'Przychodnia czynna 24/7');
 
 insert into administrator (id_administrator, email, name, password, surname) values
     (1, 'admin1@twojlekarz.pl' , 'Adam' , 'admin1' , 'Gałązka'),
@@ -60,13 +63,49 @@ insert into institution_specialization (id_institution , id_specialization) valu
     (1, 1),
     (1, 2),
     (1, 3),
+    (1, 4),
+    (1, 5),
+    (1, 6),
+    (1, 7),
+    (2, 10),
+    (2, 9),
+    (2, 8),
+    (2, 7),
+    (2, 6),
     (2, 3),
     (2, 2),
-    (2, 4),
-    (2, 6),
-    (3, 2),
+    (2, 1),
     (3, 1),
-    (3, 8);
+    (3, 2),
+    (3, 3),
+    (3, 4),
+    (3, 5),
+    (3, 6),
+    (3, 7),
+    (3, 8),
+    (4, 1),
+    (4, 2),
+    (4, 3),
+    (4, 4),
+    (4, 5),
+    (4, 6),
+    (4, 7),
+    (5, 3),
+    (5, 4),
+    (5, 5),
+    (5, 6),
+    (5, 8),
+    (5, 9),
+    (6, 10),
+    (6, 1),
+    (6, 3),
+    (6, 4),
+    (6, 6),
+    (6, 7),
+    (6, 8),
+    (6, 9);
+
+
 
 
 

@@ -17,7 +17,9 @@ public class Institution {
 
     private String name;
     private String phoneNumber;
+    @Column(scale = 3 , precision = 5)
     private BigDecimal xCoordinates;
+    @Column(scale = 3 , precision = 5)
     private BigDecimal yCoordinates;
     private String description;
 
