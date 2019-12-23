@@ -1,8 +1,9 @@
 package aplikacjeinternetowe.ai.services;
 
 import aplikacjeinternetowe.ai.controllers.GoogleCalendarController;
+import aplikacjeinternetowe.ai.dtos.EventDTOResponse;
 import aplikacjeinternetowe.ai.util.AuthorizationCodeInstalledAppCustom;
-import aplikacjeinternetowe.ai.dtos.EventDTO;
+import aplikacjeinternetowe.ai.dtos.EventDTOInput;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.extensions.jetty.auth.oauth2.LocalServerReceiver;
 import com.google.api.client.googleapis.auth.oauth2.GoogleAuthorizationCodeFlow;
@@ -27,6 +28,7 @@ import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -39,19 +41,19 @@ public class GoogleCalendarServiceImpl implements GoogleCalendarService {
     public static Calendar service;
 
     @Override
-    public Event addEvent(EventDTO eventDTO) throws IOException {
+    public Event addEvent(EventDTOInput eventDTOInput) throws IOException {
         Event event = new Event()
-                .setSummary(eventDTO.getSummary())
-                .setLocation(eventDTO.getLocation())
-                .setDescription(eventDTO.getDescription());
+                .setSummary(eventDTOInput.getSummary())
+                .setLocation(eventDTOInput.getLocation())
+                .setDescription(eventDTOInput.getDescription());
 
         EventDateTime start = new EventDateTime()
-                .setDateTime(eventDTO.getDateStart())
+                .setDateTime(eventDTOInput.getDateStart())
                 .setTimeZone("Europe/Warsaw");
         event.setStart(start);
 
         EventDateTime end = new EventDateTime()
-                .setDateTime(eventDTO.getDateEnd())
+                .setDateTime(eventDTOInput.getDateEnd())
                 .setTimeZone("Europe/Warsaw");
         event.setEnd(end);
 
@@ -64,15 +66,21 @@ public class GoogleCalendarServiceImpl implements GoogleCalendarService {
 
 
     @Override
-    public List<Event> showEvents() throws IOException {
+    public List<EventDTOResponse> showEvents() throws IOException {
         String pageToken = null;
         List<Event> eventsList = new ArrayList<>();
+        List<EventDTOResponse> finalEvents = new ArrayList<>();
         do {
             Events events = service.events().list("primary").setPageToken(pageToken).execute();
             eventsList.addAll(events.getItems());
             pageToken = events.getNextPageToken();
         } while (pageToken != null);
-        return eventsList;
+        eventsList.forEach(a-> System.out.println(a.getStart().getDateTime()));
+        eventsList.stream().map(a->{
+            finalEvents.add(new EventDTOResponse(a.getSummary() , a.getDescription(), a.getStart().getDateTime().toString(), a.getEnd().getDateTime().toString() , a.getLocation()));
+            return finalEvents;
+        }).collect(Collectors.toList());
+        return finalEvents;
     }
 
     @Override

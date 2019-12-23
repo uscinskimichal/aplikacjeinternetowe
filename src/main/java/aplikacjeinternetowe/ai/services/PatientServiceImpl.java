@@ -36,7 +36,7 @@ public class PatientServiceImpl implements PatientService {
 
     @Override
     public String addPatient(PatientDTO patientDTO) {
-        if (!patientRepository.existsByPesel(patientDTO.getPesel())) {
+        if (!patientRepository.existsByPesel(patientDTO.getPesel()) && !patientRepository.existsByEmail(patientDTO.getEmail())) {
             Patient patient = patientMapper.convert(patientDTO);
             patient.setID_Patient(0);
             patientRepository.save(patient);

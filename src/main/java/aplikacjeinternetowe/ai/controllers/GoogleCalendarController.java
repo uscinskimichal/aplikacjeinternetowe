@@ -1,18 +1,15 @@
 package aplikacjeinternetowe.ai.controllers;
 
+import aplikacjeinternetowe.ai.dtos.EventDTOResponse;
 import aplikacjeinternetowe.ai.services.GoogleCalendarServiceImpl;
-import aplikacjeinternetowe.ai.dtos.EventDTO;
+import aplikacjeinternetowe.ai.dtos.EventDTOInput;
 import com.google.api.services.calendar.model.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.io.IOException;
 import java.util.List;
-
-
-
 
 @RestController
 public class GoogleCalendarController {
@@ -32,12 +29,12 @@ public class GoogleCalendarController {
     }
 
     @PostMapping("/calendar/addEvent")
-    public ResponseEntity<Event> setEvent(@RequestBody EventDTO eventDTO) throws IOException {
-        return new ResponseEntity<>(googleCalendarService.addEvent(eventDTO), HttpStatus.OK);
+    public ResponseEntity<Event> setEvent(@RequestBody EventDTOInput eventDTOInput) throws IOException {
+        return new ResponseEntity<>(googleCalendarService.addEvent(eventDTOInput), HttpStatus.OK);
     }
 
     @GetMapping("/calendar/events")
-    public ResponseEntity<List<Event>> getEvents() throws IOException {
+    public ResponseEntity<List<EventDTOResponse>> getEvents() throws IOException {
         return new ResponseEntity<>(googleCalendarService.showEvents(), HttpStatus.OK);
     }
 }

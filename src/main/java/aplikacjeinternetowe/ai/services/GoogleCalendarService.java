@@ -1,6 +1,7 @@
 package aplikacjeinternetowe.ai.services;
 
-import aplikacjeinternetowe.ai.dtos.EventDTO;
+import aplikacjeinternetowe.ai.dtos.EventDTOInput;
+import aplikacjeinternetowe.ai.dtos.EventDTOResponse;
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.services.calendar.model.Event;
@@ -10,9 +11,9 @@ import java.util.List;
 
 public interface GoogleCalendarService {
 
-    Event addEvent(EventDTO eventDTO) throws IOException;
+    Event addEvent(EventDTOInput eventDTOInput) throws IOException;
 
-    List<Event> showEvents() throws IOException;
+    List<EventDTOResponse> showEvents() throws IOException;
 
     void loginCalender(String user);
 
