@@ -26,8 +26,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.security.GeneralSecurityException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,8 +46,19 @@ public class GoogleCalendarServiceImpl implements GoogleCalendarService {
 
     @Override
     public Event addEvent(EventDTOInput eventDTOInput) throws IOException {
-        DateTime startDate = new DateTime(eventDTOInput.getDateStart() + "T" + eventDTOInput.getTimeStart());
-        DateTime endDate = new DateTime(eventDTOInput.getDateEnd() + "T" + eventDTOInput.getTimeEnd());
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        DateTime startDate = null;
+        DateTime endDate = null;
+        try {
+            startDate = new DateTime(dateFormat.parse(eventDTOInput.getDateStart() + " " + eventDTOInput.getTimeStart()));
+            endDate = new DateTime(dateFormat.parse(eventDTOInput.getDateEnd() + " " + eventDTOInput.getTimeEnd()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(startDate);
+        System.out.println(endDate);
 
         Event event = new Event()
                 .setSummary(eventDTOInput.getSummary())
