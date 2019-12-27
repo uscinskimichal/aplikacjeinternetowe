@@ -12,6 +12,7 @@ import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.client.util.DateTime;
 import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.CalendarScopes;
@@ -42,18 +43,21 @@ public class GoogleCalendarServiceImpl implements GoogleCalendarService {
 
     @Override
     public Event addEvent(EventDTOInput eventDTOInput) throws IOException {
+        DateTime startDate = new DateTime(eventDTOInput.getDateStart() + "T" + eventDTOInput.getTimeStart());
+        DateTime endDate = new DateTime(eventDTOInput.getDateEnd() + "T" + eventDTOInput.getTimeEnd());
+
         Event event = new Event()
                 .setSummary(eventDTOInput.getSummary())
                 .setLocation(eventDTOInput.getLocation())
                 .setDescription(eventDTOInput.getDescription());
 
         EventDateTime start = new EventDateTime()
-                .setDateTime(eventDTOInput.getDateStart())
+                .setDateTime(startDate)
                 .setTimeZone("Europe/Warsaw");
         event.setStart(start);
 
         EventDateTime end = new EventDateTime()
-                .setDateTime(eventDTOInput.getDateEnd())
+                .setDateTime(endDate)
                 .setTimeZone("Europe/Warsaw");
         event.setEnd(end);
 

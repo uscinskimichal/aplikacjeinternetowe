@@ -9,8 +9,9 @@ import lombok.Setter;
 public class EventDTOInput {
     private String summary;
     private String description;
-    private DateTime dateStart;
-    private DateTime dateEnd;
+    private String dateStart;
+    private String timeStart;
+    private String dateEnd;
+    private String timeEnd;
     private String location;
-
 }
